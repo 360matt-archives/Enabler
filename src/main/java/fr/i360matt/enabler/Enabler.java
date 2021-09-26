@@ -5,22 +5,18 @@ import java.util.Map;
 
 public class Enabler {
 
-    {
-        call(this.getClass());
-    }
+    private static final Map<Enabler, Runnable> tasks = new HashMap<>();
 
-    private static final Map<Class<?>, Runnable> tasks = new HashMap<>();
-
-    public static void call (final Class<?> clazz) {
-        Runnable runnable = tasks.get(clazz);
+    public static void call (final Enabler enabler) {
+        Runnable runnable = tasks.get(enabler);
         if (runnable != null) {
             runnable.run();
-            tasks.remove(clazz);
+            tasks.remove(enabler);
         }
     }
 
-    public static void register (final Class<?> clazz, Runnable runnable) {
-        tasks.put(clazz, runnable);
+    public static void register (final Enabler enabler, Runnable runnable) {
+        tasks.put(enabler, runnable);
     }
 
 }

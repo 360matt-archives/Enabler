@@ -10,17 +10,29 @@
 </repositories>
 <dependency>
     <groupId>io.github.360matt</groupId>
-    <artifactId>FastMongo-v2</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <artifactId>Enabler</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
 </dependency>
 ```
 
 ## Usage:
+
+#### Create a empty class extends Enabler:
 ```java
-Enabler.call( class );
+public class ProjectXEnabler extends Enabler {
+    // nothing here
+}
+```  
+
+#### Now, add the call in all your project main API class:
+```java
+Enabler.call(Enabler | ProjectXEnabler);
 // Call the Runnable if it exists, only once.
+```
 
 
-Enabler.register( class, Runnable );
+#### Now, in your main app/jar, register a task:
+```java
+Enabler.register(Enabler | ProjectXEnabler, Runnable);
 // Register Runnable for a class.
 ```
